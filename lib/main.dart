@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/presentation/pages/home_notes_page.dart';
 import 'package:mynotes/utils/constants.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           primaryColor: cWhitey,
           scaffoldBackgroundColor: cWhitey,
           textTheme: sTextTheme),
-      home: HomeNotesPage,
+      home: HomeNotesPage(),
     );
   }
 }

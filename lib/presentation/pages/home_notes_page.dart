@@ -6,13 +6,12 @@ class HomeNotesPage extends StatefulWidget {
 }
 
 class _HomeNotesPage extends State<HomeNotesPage> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.microtask(() => null)
-  } 
+    Future.microtask(() => null);
+  }
 
   @override
   Widget build(BuildContext context) {
