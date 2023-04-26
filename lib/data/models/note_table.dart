@@ -28,6 +28,16 @@ class NoteTable extends Equatable {
         'tier': tier,
       };
 
+  factory NoteTable.fromMap(Map<String, dynamic> map) => NoteTable(
+        id: map['id'],
+        title: map['title'],
+        description: map['description'],
+        tier: map['tier'],
+      );
+
+  Note toEntity() =>
+      Note.toEntity(id: id, title: title, description: description, tier: tier);
+
   @override
   // TODO: implement props
   List<Object?> get props => [id, title, description, tier];

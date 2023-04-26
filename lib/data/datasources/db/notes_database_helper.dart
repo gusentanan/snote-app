@@ -38,7 +38,7 @@ class NotesDatabaseHelper {
     ''');
   }
 
-  Future<int> InsertNote(NoteTable note) async {
+  Future<int> insertNote(NoteTable note) async {
     final db = await database;
     return await db!.insert(_tableNotes, note.toMap());
   }
@@ -48,5 +48,20 @@ class NotesDatabaseHelper {
     final List<Map<String, dynamic>> res = await db!.query(_tableNotes);
 
     return res;
+  }
+
+  Future<Map<String, dynamic>?> getNoteById(int id) async {
+    final db = await database;
+    final res = await db!.query(
+      _tableNotes,
+      where: 'id=?',
+      whereArgs: [id],
+    );
+
+    if (res.isNotEmpty) {
+      return res.first;
+    } else {
+      return null;
+    }
   }
 }

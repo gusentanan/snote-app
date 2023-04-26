@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class Note extends Equatable {
-  final int? id;
-  final String? title;
-  final String? description;
-  final int? tier;
+  int? id;
+  String? title;
+  String? description;
+  int? tier;
 
   Note({
     required this.id,
@@ -12,6 +12,12 @@ class Note extends Equatable {
     required this.description,
     required this.tier,
   });
+
+  Note.toEntity(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.tier});
 
   @override
   // TODO: implement props
