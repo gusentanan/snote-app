@@ -6,6 +6,7 @@ import '../../domain/entities/note.dart';
 abstract class NoteLocalDataSource {
   Future<NoteTable?> insertNote(NoteTable note);
   Future<List<NoteTable>> getNoteList();
+  Future<NoteTable?> getSingleNote(int id);
 }
 
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
@@ -31,6 +32,16 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
       }
     } catch (e) {
       throw DatabaseException(e.toString());
+    }
+  }
+
+  @override
+  Future<NoteTable?> getSingleNote(int id) async {
+    final res = await notesDatabaseHelper.getNoteById(id);
+    if (res != null) {
+      return NoteTable.fromMap(res);
+    } else {
+      return null;
     }
   }
 }

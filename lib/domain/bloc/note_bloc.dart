@@ -6,14 +6,18 @@ import 'package:mynotes/domain/bloc/note_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:mynotes/domain/usecase/insert_note_usecase.dart';
 import '../usecase/get_note_list_usecase.dart';
+import '../usecase/get_single_note_usecase.dart';
 
 class NoteBloc extends Bloc<NoteListEvent, NoteState> {
   final GetNoteListUsecase _getNoteList;
   final InsertNoteUsecase _insertNote;
+  final GetSingleNoteUsecase _getSingleNote;
 
-  NoteBloc(this._getNoteList, this._insertNote) : super(NoteListInitial()) {
+  NoteBloc(this._getNoteList, this._insertNote, this._getSingleNote)
+      : super(NoteListInitial()) {
     on<OnGetNoteListEvent>(_onGetNoteList);
     on<AddNoteEvent>(_onInsertNote);
+    on<OnGetSingleNote>(_onGetSingleNote);
   }
 
   FutureOr<void> _onGetNoteList(
@@ -35,6 +39,22 @@ class NoteBloc extends Bloc<NoteListEvent, NoteState> {
       emit(NoteError(failure.message));
     }, (success) {
       emit(NoteSuccess(note));
+    });
+  }
+
+  FutureOr<void> _onGetSingleNote(
+      OnGetSingleNote event, Emitter<NoteState> emit) async {
+    final id = event.id;
+
+    final res = await _getSingleNote.execute(id);
+    res.fold((failure) {
+      emit(NoteError(failure.message));
+    }, (success) {
+      if (success == null) {
+        emit(NoteEmpty());
+      } else {
+        emit(NoteSuccess(success));
+      }
     });
   }
 }

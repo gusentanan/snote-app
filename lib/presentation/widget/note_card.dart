@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/presentation/pages/detail_notes_page.dart';
 import 'package:mynotes/utils/constants.dart';
 
 import '../../domain/entities/note.dart';
@@ -11,7 +12,10 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, DetailNotes.ROUTE_NAME,
+            arguments: note.id);
+      },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

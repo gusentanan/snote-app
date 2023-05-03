@@ -8,7 +8,6 @@ class OnGetNoteListEvent extends NoteListEvent {
   OnGetNoteListEvent();
 
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -17,6 +16,14 @@ class AddNoteEvent extends NoteListEvent {
   AddNoteEvent(this.note);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [note];
+}
+
+class OnGetSingleNote extends NoteListEvent {
+  final int? id;
+
+  OnGetSingleNote(this.id);
+
+  @override
+  List<Object?> get props => [];
 }

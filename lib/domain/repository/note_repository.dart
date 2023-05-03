@@ -8,6 +8,7 @@ import '../entities/note.dart';
 abstract class NoteRepository {
   Future<Either<Failure, List<Note>>> getNoteList();
   Future<Either<Failure, Note?>> insertToNote(Note data);
+  Future<Either<Failure, Note?>> getSingleNote(int id);
 }
 
 class NoteRepositoryImpl implements NoteRepository {
@@ -30,7 +31,13 @@ class NoteRepositoryImpl implements NoteRepository {
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.msg));
     } catch (e) {
-      throw e;
+      rethrow;
     }
+  }
+
+  @override
+  Future<Either<Failure, Note?>> getSingleNote(int id) async {
+    final res = await noteLocalDataSource.getSingleNote(id);
+    return Right(res?.toEntity());
   }
 }

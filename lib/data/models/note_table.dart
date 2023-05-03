@@ -39,6 +39,5 @@ class NoteTable extends Equatable {
       Note.toEntity(id: id, title: title, description: description, tier: tier);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [id, title, description, tier];
 }

@@ -4,17 +4,19 @@ import 'package:mynotes/data/datasources/note_local_datasource.dart';
 import 'package:mynotes/domain/bloc/note_bloc.dart';
 import 'package:mynotes/domain/repository/note_repository.dart';
 import 'package:mynotes/domain/usecase/get_note_list_usecase.dart';
+import 'package:mynotes/domain/usecase/get_single_note_usecase.dart';
 import 'package:mynotes/domain/usecase/insert_note_usecase.dart';
 
 final locator = GetIt.instance;
 
 void init() {
   // Bloc Locator
-  locator.registerFactory(() => NoteBloc(locator(), locator()));
+  locator.registerFactory(() => NoteBloc(locator(), locator(), locator()));
 
   // UseCase Locator
   locator.registerLazySingleton(() => GetNoteListUsecase(locator()));
   locator.registerLazySingleton(() => InsertNoteUsecase(locator()));
+  locator.registerLazySingleton(() => GetSingleNoteUsecase(locator()));
 
   // Repository Locator
   locator.registerLazySingleton<NoteRepository>(

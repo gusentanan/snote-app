@@ -6,7 +6,6 @@ abstract class NoteState extends Equatable {}
 
 class NoteListInitial extends NoteState {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -16,7 +15,6 @@ class NoteListSuccess extends NoteState {
   NoteListSuccess(this.noteList);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [noteList];
 }
 
@@ -26,13 +24,11 @@ class NoteError extends NoteState {
   NoteError(this.msg);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [msg];
 }
 
 class NoteListEmpty extends NoteState {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -42,6 +38,10 @@ class NoteSuccess extends NoteState {
   NoteSuccess(this.note);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [note];
+}
+
+class NoteEmpty extends NoteState {
+  @override
+  List<Object?> get props => [];
 }

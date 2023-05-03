@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynotes/domain/bloc/note_bloc.dart';
 import 'package:mynotes/domain/bloc/note_events.dart';
 import 'package:mynotes/domain/bloc/note_state.dart';
+import 'package:mynotes/presentation/pages/detail_notes_page.dart';
 import 'package:mynotes/utils/constants.dart';
 import 'package:mynotes/utils/route_observer.dart';
 
@@ -48,24 +49,24 @@ class _HomeNotesPage extends State<HomeNotesPage> with RouteAware {
           padding: const EdgeInsets.all(8.0),
           child: BlocBuilder<NoteBloc, NoteState>(
             builder: (context, state) {
-              if (state is NoteListEmpty) {
-                final List<Note> myNote =
-                    List<Note>.filled(2, testNote1, growable: false);
-                myNote[1] = testNote2;
+              if (state is NoteListEmpty || state is NoteEmpty) {
+                // final List<Note> myNote =
+                //     List<Note>.filled(2, testNote1, growable: false);
+                // myNote[1] = testNote2;
 
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    final notes = myNote[index];
-                    return NoteCard(notes);
-                  },
-                  itemCount: myNote.length,
-                );
+                // return ListView.builder(
+                //   itemBuilder: (context, index) {
+                //     final notes = myNote[index];
+                //     return NoteCard(notes);
+                //   },
+                //   itemCount: myNote.length,
+                // );
 
-                // return Center(
-                //     child: Text(
-                //   "Tap the button to add a Note!",
-                //   style: sSubheader,
-                // ));
+                return Center(
+                    child: Text(
+                  "Tap the button to add a Note!",
+                  style: sSubheader,
+                ));
               } else if (state is NoteListSuccess) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
@@ -82,10 +83,12 @@ class _HomeNotesPage extends State<HomeNotesPage> with RouteAware {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, DetailNotes.ROUTE_NAME, arguments: 0);
+        },
         tooltip: "Add Note",
         shape: const CircleBorder(
-            side: BorderSide(color: cNotSoBlack, width: 1.0)),
+            side: BorderSide(color: Colors.transparent, width: 1.0)),
         backgroundColor: Colors.white,
         child: const Icon(Icons.add, color: cNotSoBlack),
       ),
