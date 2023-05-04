@@ -5,9 +5,9 @@ const Color cNotSoBlack = Color.fromARGB(255, 30, 33, 39);
 const Color cWhitey = Color.fromARGB(255, 212, 212, 212);
 
 List<Color> colorPicker = [
-  Color.fromARGB(255, 232, 38, 38),
-  Color.fromARGB(255, 255, 150, 37),
   Color.fromARGB(255, 19, 191, 102),
+  Color.fromARGB(255, 255, 150, 37),
+  Color.fromARGB(255, 232, 38, 38),
 ];
 
 // text style

@@ -30,7 +30,7 @@ class NotesDatabaseHelper {
   void _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE  $_tableNotes (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
         description TEXT,
         tier INTEGER

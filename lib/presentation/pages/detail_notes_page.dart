@@ -33,9 +33,11 @@ class _DetailNotes extends State<DetailNotes> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<NoteBloc>().add(OnGetSingleNote(widget.id));
-    });
+    if (widget.id != 0) {
+      Future.microtask(() {
+        context.read<NoteBloc>().add(OnGetSingleNote(widget.id));
+      });
+    }
   }
 
   // we need to add widget: editor listener for note component
@@ -44,9 +46,11 @@ class _DetailNotes extends State<DetailNotes> {
   Widget build(BuildContext context) {
     final note = context.select<NoteBloc, Note?>((value) {
       if (value.state is NoteSuccess) {
-        return value.state as Note;
+        return (value.state as NoteSuccess).note;
       } else if (value.state is NoteEmpty) {
-        return Note(id: 0, title: '', description: '', tier: 2);
+        return Note(title: '', description: '', tier: 2);
+      } else {
+        return Note(title: '', description: '', tier: 2);
       }
     });
     titleController.text = note?.title ?? '';
@@ -73,6 +77,7 @@ class _DetailNotes extends State<DetailNotes> {
             IconButton(
                 onPressed: () {
                   _save(context, note);
+                  Navigator.pop(context, true);
 
                   /// ADD DIALOG SAVE
                 },
@@ -97,9 +102,9 @@ class _DetailNotes extends State<DetailNotes> {
           child: Column(
             children: [
               PriorityPicker(
-                selectedIndex: 2,
+                selectedIndex: note?.tier,
                 onTap: (index) {
-                  note?.tier = 2 - index;
+                  note?.tier = 3 - index;
                 },
               ),
               Padding(

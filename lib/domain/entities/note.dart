@@ -7,14 +7,14 @@ class Note extends Equatable {
   int? tier;
 
   Note({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.tier,
   });
 
   Note.toEntity(
-      {required this.id,
+      {this.id,
       required this.title,
       required this.description,
       required this.tier});

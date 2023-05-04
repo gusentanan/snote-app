@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mynotes/domain/bloc/note_bloc.dart';
@@ -29,6 +31,11 @@ class _HomeNotesPage extends State<HomeNotesPage> with RouteAware {
   void didChangeDependencies() {
     super.didChangeDependencies();
     routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() {
+    Future.microtask(() => context.read<NoteBloc>().add(OnGetNoteListEvent()));
   }
 
   @override
