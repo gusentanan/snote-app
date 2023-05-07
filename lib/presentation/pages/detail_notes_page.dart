@@ -11,11 +11,6 @@ import 'package:mynotes/utils/constants.dart';
 import '../../domain/entities/note.dart';
 
 class DetailNotes extends StatefulWidget {
-  // 1. insert new note (add note with null value)
-  // 2. read from db (existing note)
-  // 3. passing the id from note list to detail
-  // 4. updating the value in detail
-
   final int id;
   DetailNotes({required this.id});
 
@@ -40,15 +35,11 @@ class _DetailNotes extends State<DetailNotes> {
     }
   }
 
-  // we need to add widget: editor listener for note component
-  // we also need to get the bloc data
   @override
   Widget build(BuildContext context) {
     final note = context.select<NoteBloc, Note?>((value) {
       if (value.state is NoteSuccess) {
         return (value.state as NoteSuccess).note;
-      } else if (value.state is NoteEmpty) {
-        return Note(title: '', description: '', tier: 2);
       } else {
         return Note(title: '', description: '', tier: 2);
       }
@@ -144,5 +135,13 @@ class _DetailNotes extends State<DetailNotes> {
 
   void _save(BuildContext context, Note? note) async {
     context.read<NoteBloc>().add(AddNoteEvent(note!));
+  }
+
+  void _delete(BuildContext context, int id) async {
+    context.read<NoteBloc>().add(OnDeleteNoteEvent(id));
+  }
+
+  void _update(BuildContext contex, Note? note) async {
+    context.read<NoteBloc>().add(OnUpdateNoteEvent(note!));
   }
 }

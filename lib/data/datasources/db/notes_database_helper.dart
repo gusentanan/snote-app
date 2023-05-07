@@ -1,5 +1,8 @@
+import 'dart:js_util/js_util_wasm.dart';
+
 import 'package:sqflite/sqflite.dart';
 
+import '../../../domain/entities/note.dart';
 import '../../models/note_table.dart';
 
 class NotesDatabaseHelper {
@@ -47,6 +50,27 @@ class NotesDatabaseHelper {
     final db = await database;
     final List<Map<String, dynamic>> res = await db!.query(_tableNotes);
 
+    return res;
+  }
+
+  Future<int> deleteNote(int id) async {
+    final db = await database;
+    final res = await db!.delete(
+      _tableNotes,
+      where: 'id=?',
+      whereArgs: [id],
+    );
+    return res;
+  }
+
+  Future<int> updateNote(NoteTable note) async {
+    final db = await database;
+    final res = await db!.update(
+      _tableNotes,
+      note.toMap(),
+      where: 'id=?',
+      whereArgs: [note.id],
+    );
     return res;
   }
 

@@ -41,6 +41,15 @@ class NoteSuccess extends NoteState {
   List<Object?> get props => [note];
 }
 
+class NoteDeleteSuccess extends NoteState {
+  final int code;
+
+  NoteDeleteSuccess(this.code);
+
+  @override
+  List<Object?> get props => [code];
+}
+
 class NoteEmpty extends NoteState {
   @override
   List<Object?> get props => [];

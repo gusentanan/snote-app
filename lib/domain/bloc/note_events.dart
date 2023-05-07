@@ -27,3 +27,21 @@ class OnGetSingleNote extends NoteListEvent {
   @override
   List<Object?> get props => [];
 }
+
+class OnDeleteNoteEvent extends NoteListEvent {
+  final int? id;
+
+  OnDeleteNoteEvent(this.id);
+
+  @override
+  List<Object?> get props => [];
+}
+
+class OnUpdateNoteEvent extends NoteListEvent {
+  final Note note;
+
+  OnUpdateNoteEvent(this.note);
+
+  @override
+  List<Object?> get props => [note];
+}

@@ -9,6 +9,8 @@ abstract class NoteRepository {
   Future<Either<Failure, List<Note>>> getNoteList();
   Future<Either<Failure, Note?>> insertToNote(Note data);
   Future<Either<Failure, Note?>> getSingleNote(int id);
+  Future<Either<Failure, Note?>> updateNote(Note data);
+  Future<Either<Failure, int>> deleteNote(int id);
 }
 
 class NoteRepositoryImpl implements NoteRepository {
@@ -39,5 +41,24 @@ class NoteRepositoryImpl implements NoteRepository {
   Future<Either<Failure, Note?>> getSingleNote(int id) async {
     final res = await noteLocalDataSource.getSingleNote(id);
     return Right(res?.toEntity());
+  }
+
+  @override
+  Future<Either<Failure, int>> deleteNote(int id) async {
+    final res = await noteLocalDataSource.deleteNote(id);
+    return Right(res);
+  }
+
+  @override
+  Future<Either<Failure, Note?>> updateNote(Note data) async {
+    try {
+      final res =
+          await noteLocalDataSource.updateNote(NoteTable.fromEntity(data));
+      return Right(res?.toEntity());
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.msg));
+    } catch (e) {
+      rethrow;
+    }
   }
 }

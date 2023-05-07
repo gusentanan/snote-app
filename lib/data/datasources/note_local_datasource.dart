@@ -7,6 +7,8 @@ abstract class NoteLocalDataSource {
   Future<NoteTable?> insertNote(NoteTable note);
   Future<List<NoteTable>> getNoteList();
   Future<NoteTable?> getSingleNote(int id);
+  Future<int> deleteNote(int id);
+  Future<NoteTable?> updateNote(NoteTable note);
 }
 
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
@@ -42,6 +44,31 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
       return NoteTable.fromMap(res);
     } else {
       return null;
+    }
+  }
+
+  @override
+  Future<int> deleteNote(int id) async {
+    try {
+      final res = await notesDatabaseHelper.deleteNote(id);
+      return res;
+    } catch (e) {
+      throw DatabaseException(e.toString());
+    }
+  }
+
+  @override
+  Future<NoteTable?> updateNote(NoteTable note) async {
+    try {
+      await notesDatabaseHelper.updateNote(note);
+      final res = await notesDatabaseHelper.getNoteById(note.id!);
+      if (res != null) {
+        return NoteTable.fromMap(res);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw DatabaseException(e.toString());
     }
   }
 }
