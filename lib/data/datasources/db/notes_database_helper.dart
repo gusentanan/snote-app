@@ -1,5 +1,3 @@
-import 'dart:js_util/js_util_wasm.dart';
-
 import 'package:sqflite/sqflite.dart';
 
 import '../../../domain/entities/note.dart';

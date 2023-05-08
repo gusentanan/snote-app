@@ -18,6 +18,11 @@ final TextStyle sHeading2 = GoogleFonts.poppins(
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
     color: cNotSoBlack);
+final TextStyle sHeading2White = GoogleFonts.poppins(
+    fontSize: 19,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.15,
+    color: Colors.white);
 final TextStyle sSubheader = GoogleFonts.poppins(
     fontSize: 15,
     fontWeight: FontWeight.w400,

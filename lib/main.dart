@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:mynotes/domain/bloc/note_bloc.dart';
 import 'package:mynotes/presentation/pages/detail_notes_page.dart';
 import 'package:mynotes/presentation/pages/home_notes_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           title: 'My Notes',
+          builder: FlutterSmartDialog.init(),
           theme: ThemeData(
               colorScheme: sColorScheme,
               primaryColor: cWhitey,

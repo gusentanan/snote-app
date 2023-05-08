@@ -57,18 +57,6 @@ class _HomeNotesPage extends State<HomeNotesPage> with RouteAware {
           child: BlocBuilder<NoteBloc, NoteState>(
             builder: (context, state) {
               if (state is NoteListEmpty || state is NoteEmpty) {
-                // final List<Note> myNote =
-                //     List<Note>.filled(2, testNote1, growable: false);
-                // myNote[1] = testNote2;
-
-                // return ListView.builder(
-                //   itemBuilder: (context, index) {
-                //     final notes = myNote[index];
-                //     return NoteCard(notes);
-                //   },
-                //   itemCount: myNote.length,
-                // );
-
                 return Center(
                     child: Text(
                   "Tap the button to add a Note!",
