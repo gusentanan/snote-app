@@ -6,12 +6,12 @@ I built this app with the sole purpose of learning how to do the declarative app
 - `BloC` make it easier to manage and update the state of an app in response to user interaction or other events
 - `sqflite` for local database processing.
 - `dartz`  null safety management.
-- `Equatable` simplify the process of implementing equality checks between objects.
+- `equatable` simplify the process of implementing equality checks between objects.
 - `get_it` for managing dependencies accross the app
-- `flutter smart dialog` To make it easier to create custom dialog boxes and toast messages.
+- `flutter_smart_dialog` To make it easier to create custom dialog boxes and toast messages.
 
 ### How to run
-- `cd mynotes` to move to the project dir. 
+- `cd snote-app` to move to the project dir. 
 - `flutter pub get` to get all the dependencies.
 - Then `flutter run` to run the app.
 
