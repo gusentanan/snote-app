@@ -20,7 +20,7 @@ class AddNoteEvent extends NoteListEvent {
 }
 
 class OnGetSingleNote extends NoteListEvent {
-  final int? id;
+  final int id;
 
   OnGetSingleNote(this.id);
 
@@ -29,7 +29,7 @@ class OnGetSingleNote extends NoteListEvent {
 }
 
 class OnDeleteNoteEvent extends NoteListEvent {
-  final int? id;
+  final int id;
 
   OnDeleteNoteEvent(this.id);
 

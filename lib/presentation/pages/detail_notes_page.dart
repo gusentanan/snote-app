@@ -45,7 +45,7 @@ class _DetailNotes extends State<DetailNotes> {
       if (value.state is NoteSuccess) {
         return (value.state as NoteSuccess).note;
       } else {
-        return Note(title: '', description: '', tier: null);
+        return Note(title: null, description: null, tier: null);
       }
     });
     titleController.text = note?.title ?? '';
@@ -222,7 +222,6 @@ class _DetailNotes extends State<DetailNotes> {
                             _save(context, note);
                           }
                           Navigator.of(context).pop();
-                          Navigator.pop(context, true);
                         },
                         textButton: 'Yes',
                         btnCommand: true,
@@ -253,15 +252,15 @@ class _DetailNotes extends State<DetailNotes> {
     SmartDialog.dismiss();
   }
 
-  void _save(BuildContext context, Note? note) async {
-    context.read<NoteBloc>().add(AddNoteEvent(note!));
+  void _save(BuildContext context, Note note) async {
+    context.read<NoteBloc>().add(AddNoteEvent(note));
   }
 
   void _delete(BuildContext context, int id) async {
     context.read<NoteBloc>().add(OnDeleteNoteEvent(id));
   }
 
-  void _update(BuildContext contex, Note? note) async {
-    context.read<NoteBloc>().add(OnUpdateNoteEvent(note!));
+  void _update(BuildContext context, Note note) async {
+    context.read<NoteBloc>().add(OnUpdateNoteEvent(note));
   }
 }

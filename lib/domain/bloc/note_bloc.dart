@@ -69,7 +69,7 @@ class NoteBloc extends Bloc<NoteListEvent, NoteState> {
       OnDeleteNoteEvent event, Emitter<NoteState> emit) async {
     final id = event.id;
 
-    final res = await _deleteNote.execute(id!);
+    final res = await _deleteNote.execute(id);
     res.fold((failure) {
       emit(NoteError(failure.message));
     }, (success) {

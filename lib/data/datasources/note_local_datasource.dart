@@ -25,8 +25,8 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   @override
   Future<NoteTable?> insertNote(NoteTable note) async {
     try {
-      await notesDatabaseHelper.insertNote(note);
-      final res = await notesDatabaseHelper.getNoteById(note.id!);
+      final id = await notesDatabaseHelper.insertNote(note);
+      final res = await notesDatabaseHelper.getNoteById(id);
       if (res != null) {
         return NoteTable.fromMap(res);
       } else {
@@ -61,7 +61,8 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   Future<NoteTable?> updateNote(NoteTable note) async {
     try {
       await notesDatabaseHelper.updateNote(note);
-      final res = await notesDatabaseHelper.getNoteById(note.id!);
+      final res = await notesDatabaseHelper.getNoteById(note
+          .id!); // we can assure that the id is not null since the id is passed to view the note content
       if (res != null) {
         return NoteTable.fromMap(res);
       } else {
