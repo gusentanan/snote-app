@@ -6,10 +6,11 @@ I built this app with the sole purpose of learning how to do the declarative app
      <td>Preview</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/gusentanan/snote-app/assets/68723002/4f32f310-1a5f-4cae-951a-03b9d4ad6788" width=270 ></td>
+    <td><img src="https://github.com/gusentanan/snote-app/assets/68723002/38bcf74d-101e-46ef-aa90-3f525f784144" width=270 ></td>
   </tr>
  </table>
- 
+
+
 ## Project Environment
 ```
 Flutter version 3.7.11 • Upstream repository https://github.com/flutter/flutter.git
